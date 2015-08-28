@@ -864,6 +864,17 @@
      * 
      */
     Handlebars.registerHelper("trim", function(obj) {
+        if (obj) { return obj.trim(); }
+    });
+
+    /**
+     * @function stripNonAlpha
+     *
+     * Removes all non-alpha characters and makes lowercase
+     *
+     * (useful for adding to classes etc)
+     */
+    Handlebars.registerHelper("stripNonAlpha", function(obj) {
         if (obj) { return DDG.strip_non_alpha(obj.toLowerCase()); }
     });
 
