@@ -289,6 +289,9 @@
      * @return {string}
      */
     Handlebars.registerHelper("formatSubtitle", function(components) {
+        // don't leave a blank spot in the template
+        if (!components) { return '&nbsp;' }
+
         components = $.isArray(components) ? components: [components];
 
         return DDG.exec_template('subtitle', {
