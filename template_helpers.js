@@ -224,8 +224,8 @@
             words = text.split(" ");
 
         for(var i = 0; i < words.length; i++) {
-            count += words[i].length + 1;
-            if(count < limit) {
+            count += words[i].length + (i < words.length-1 ? 1 : 0);
+            if(count <= limit) {
                 result.push(words[i]);
             }
         }
