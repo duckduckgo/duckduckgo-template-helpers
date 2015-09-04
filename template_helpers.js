@@ -290,7 +290,7 @@
      */
     Handlebars.registerHelper("formatSubtitle", function(components) {
         // don't leave a blank spot in the template
-        if (!components) { return '&nbsp;' }
+        if (!components) { return '&nbsp;'; }
 
         components = $.isArray(components) ? components: [components];
 
