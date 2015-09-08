@@ -202,7 +202,7 @@
      * 
      */
     Handlebars.registerHelper("ellipsis", function(text, limit, options) {
-        if (!text) { return; }
+        if (!text) { return ""; }
 
         // If we get a number, convert it to a string.
         // We convert things to a string because [object Number] doesn't have the `split` method.
