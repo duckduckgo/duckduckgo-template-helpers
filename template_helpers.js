@@ -202,7 +202,7 @@
      * 
      */
     Handlebars.registerHelper("ellipsis", function(text, limit, options) {
-        if (!text) { return; }
+        if (!text) { return ""; }
 
         // If we get a number, convert it to a string.
         // We convert things to a string because [object Number] doesn't have the `split` method.
@@ -224,8 +224,8 @@
             words = text.split(" ");
 
         for(var i = 0; i < words.length; i++) {
-            count += words[i].length + 1;
-            if(count < limit) {
+            count += words[i].length + (i < words.length-1 ? 1 : 0);
+            if(count <= limit) {
                 result.push(words[i]);
             }
         }
