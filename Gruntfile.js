@@ -30,8 +30,7 @@ module.exports = function(grunt){
                     'build/templates-answerbar.js'
                 ],
                 specs: [
-                    'test/ellipsis.js',
-                    'test/formatSubtitle.js'
+                    'test/*.js'
                 ]
             }
         },
