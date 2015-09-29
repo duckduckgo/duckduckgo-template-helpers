@@ -456,7 +456,7 @@
     Handlebars.registerHelper("loop", function(numLoops, block) {
         var ret, data;
 
-        numLoops = Math.max(numLoops, 100);
+        numLoops = Math.min(numLoops, 100);
 
         /* provide index to inner block */
         if (block.data) {
