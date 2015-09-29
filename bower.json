@@ -1,6 +1,6 @@
 {
   "name": "duckduckgo-template-helpers",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Template helpers used by DuckDuckGo",
   "main": "template-helpers.js",
   "license": "Apache2",
