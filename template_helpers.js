@@ -904,7 +904,7 @@
 
         var src = '/loader/' + loaderColor + loaderSize + '.png';
 
-        return '<div class="loader" style="background-image:url(\"' + src + '\")"></div>';
+        return '<div class="loader" style="background-image:url(\'' + src + '\');"></div>';
     });
 
 })(this);
