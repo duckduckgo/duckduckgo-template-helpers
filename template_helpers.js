@@ -902,7 +902,7 @@
             loaderColor = isDarkColor ? 'white' : 'black';
         }
 
-        var src = '/loader/' + loaderColor + loaderSize + '.png';
+        var src = '/assets/loader/' + loaderColor + loaderSize + '.png';
 
         return '<div class="loader" style="background-image:url(\'' + src + '\');"></div>';
     });
