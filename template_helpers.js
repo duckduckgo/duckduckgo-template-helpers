@@ -895,7 +895,7 @@
             // if no explicit color is passed, look at hte page
             // background color setting and if it's a light color use
             // the black loader, if dark color use the white loader:
-            var bgcolor = DDG.settings.get('k7'),
+            var bgColor = DDG.settings.get('k7'),
                 colorObject = tinycolor(bgColor),
                 isDarkColor = colorObject.isValid() && colorObject.toHsl().l < 0.5;
 
