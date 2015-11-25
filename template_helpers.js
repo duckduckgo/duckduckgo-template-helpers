@@ -888,7 +888,7 @@
      * @param {string} color [white|black], optional
      */
     Handlebars.registerHelper("loader", function(color) {
-        var loaderColor = color,
+        var loaderColor = typeof color === 'string' && color,
             loaderSize = DDG.is3x ? 'x3' : DDG.is2x ? 'x2' : 'x1';
 
         if (!loaderColor) {
