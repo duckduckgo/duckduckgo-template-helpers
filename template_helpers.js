@@ -881,4 +881,30 @@
         if (obj) { return DDG.strip_non_alpha(obj.toLowerCase()); }
     });
 
+    /**
+     * For adding a loading animation to 
+     * the DOM.
+     *
+     * @param {string} color [white|black], optional
+     */
+    Handlebars.registerHelper("loader", function(color) {
+        var loaderColor = typeof color === 'string' && color,
+            loaderSize = DDG.is3x ? 'x3' : DDG.is2x ? 'x2' : 'x1';
+
+        if (!loaderColor) {
+            // if no explicit color is passed, look at hte page
+            // background color setting and if it's a light color use
+            // the black loader, if dark color use the white loader:
+            var bgColor = DDG.settings.get('k7'),
+                colorObject = tinycolor(bgColor),
+                isDarkColor = colorObject.isValid() && colorObject.toHsl().l < 0.5;
+
+            loaderColor = isDarkColor ? 'white' : 'black';
+        }
+
+        var src = '/assets/loader/' + loaderColor + loaderSize + '.png';
+
+        return '<div class="loader" style="background-image:url(\'' + src + '\');"></div>';
+    });
+
 })(this);
