@@ -12,4 +12,9 @@ describe('Handlebars.helpers.ellipsis', function() {
             expect(Handlebars.helpers.ellipsis(test.text, test.len)).toEqual(test.expected);
         });
     });
+
+    it('should just return the full string when there is no limit passed in', function() {
+        var fullText = 'This is the full text';
+        expect(Handlebars.helpers.ellipsis(fullText)).toEqual(fullText);
+    });
 });

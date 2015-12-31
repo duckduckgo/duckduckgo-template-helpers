@@ -219,6 +219,11 @@
             limit = options.hash.fallback;
         }
 
+        // if there's still no limit defined, just return the full text
+        if (!$.isNumeric(limit)) {
+            return text;
+        }
+
         var result = [],
             count = 0,
             words = text.split(" ");
