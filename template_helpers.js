@@ -214,9 +214,18 @@
         if (options && options.hash.parseFirst) {
             text = DDG.parse_link(text,"rest");
         }
+
         // check to ensure that we have a valid limit, if not fall back to the provided default
-        if (!$.isNumeric(limit) && (options && options.hash.fallback)) {
-            limit = options.hash.fallback;
+        if (!$.isNumeric(limit)) {
+            if (options && options.hash.fallback) {
+                limit = options.hash.fallback;
+            }
+
+            // if still no valid limit, just default
+            // it to 100 characters:
+            if (!$.isNumeric(limit)) {
+                limit = 100;
+            }
         }
 
         var result = [],
