@@ -93,8 +93,6 @@
 
     /**
      * @function condense
-     *
-     * **Block Helper**
      * 
      * Shortens a string
      * 
