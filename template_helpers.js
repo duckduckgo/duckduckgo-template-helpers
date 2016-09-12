@@ -324,7 +324,12 @@
             obj = DDG.parse_link(obj,"text");
         }
 
-        var tile = DDG.parseAbstract(obj);
+        var tile = DDG.parseAbstract(obj),
+            title = tile.main;
+
+        if (ops.ellipsis) {
+            title = Handlebars.helpers.ellipsis(tile.main, ops.ellipsis);
+        }
 
         return DDG.exec_template('title', {
             tagName: ops.el || 'span',
@@ -332,7 +337,7 @@
             classNameSec: ops.classNameSec,
             subTitle: !ops.noSub && tile.subTitle,
             optSub: ops.optSub,
-            title: Handlebars.helpers.ellipsis(tile.main, ops.ellipsis),
+            title: title,
             href: (ops.href && this[ops.href]) || ops.href,
             hrefTitle: tile.main && !tile.main.match(/<b>/) ? tile.main : null
         });
