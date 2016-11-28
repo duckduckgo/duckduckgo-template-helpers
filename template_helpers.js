@@ -15,7 +15,7 @@
     });
 
     Handlebars.registerHelper("stripFathead", function(context) {
-        return context.split('<br>')[0];
+        return context.split('. ')[0];
     });
     
     // Applies logical conjuction to an arbitrary number of parameters,
