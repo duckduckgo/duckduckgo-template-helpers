@@ -14,6 +14,10 @@
         return "<ul>" + list + "</ul>";
     });
 
+    Handlebars.registerHelper("stripFathead", function(context) {
+        return context.split('<br>')[0];
+    });
+    
     // Applies logical conjuction to an arbitrary number of parameters,
     // and show enclosed block if true
     //
