@@ -1,5 +1,19 @@
 (function(env) {
 
+    Handlebars.registerHelper("list", function(context, options) {
+        var list = "";
+
+        context.forEach(function(v) {
+            var key = Object.keys(v)[0];
+            list += options.fn({
+                title: key,
+                description: v[key],
+            });
+        });
+
+        return "<ul>" + list + "</ul>";
+    });
+
     // Applies logical conjuction to an arbitrary number of parameters,
     // and show enclosed block if true
     //
