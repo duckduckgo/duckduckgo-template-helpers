@@ -2,12 +2,13 @@
 
     Handlebars.registerHelper("list", function(context, options) {
         var list = "";
-
-        context.forEach(function(v) {
+        
+        context.Abstract.categories.forEach(function(v) {
             var key = Object.keys(v)[0];
             list += options.fn({
                 title: key,
                 description: v[key],
+                src_id: context.meta.src_id,
             });
         });
 
@@ -15,7 +16,7 @@
     });
 
     Handlebars.registerHelper("stripFathead", function(context) {
-        return context.split('.')[0];
+        return context.split('.')[0] + ".";
     });
     
     // Applies logical conjuction to an arbitrary number of parameters,
