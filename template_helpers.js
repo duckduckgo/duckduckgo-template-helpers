@@ -15,7 +15,15 @@
         return "<ul>" + list + "</ul>";
     });
 
+    Handlebars.registerHelper("transform", function(context) {
+        return context.replace(" ", "_");
+    });
+    
     Handlebars.registerHelper("stripFathead", function(context) {
+        var tmp = document.createElement("DIV");
+        tmp.innerHTML = context;
+        context = tmp.textContent || tmp.innerText || "";
+        
         return context.split('.')[0] + ".";
     });
     
