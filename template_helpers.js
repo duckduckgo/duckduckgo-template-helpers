@@ -2,17 +2,22 @@
 
     Handlebars.registerHelper("list", function(context, options) {
         var list = "";
-        
-        context.Abstract.categories.forEach(function(v) {
-            var key = Object.keys(v)[0];
-            list += options.fn({
-                title: key,
-                description: v[key],
-                src_id: context.meta.src_id,
-            });
-        });
 
-        return "<ul>" + list + "</ul>";
+        if(context.Abstract.categories) {
+            context.Abstract.categories.forEach(function(v) {
+                var key = Object.keys(v)[0];
+                var obj = $.extend(v[key], {
+                    title: key,
+                    signal: context.meta.signal_from
+                });
+                
+                list += options.fn(obj);
+            });
+        } else {
+            return "";
+        }
+
+        return "<ul class='gw'>" + list + "</ul>";
     });
 
     Handlebars.registerHelper("transform", function(context) {
