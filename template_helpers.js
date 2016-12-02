@@ -2,15 +2,18 @@
 
     Handlebars.registerHelper("list", function(context, options) {
         var list = "";
+        var limit = 0;
 
         if(context.Abstract.categories) {
             context.Abstract.categories.forEach(function(v) {
                 var key = Object.keys(v)[0];
                 var obj = $.extend(v[key], {
                     title: key,
-                    signal: context.meta.signal_from
+                    signal: context.meta.signal_from,
+                    hide: limit < 12 ? false : true
                 });
-                
+
+                limit++;
                 list += options.fn(obj);
             });
         } else {
