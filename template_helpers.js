@@ -1,5 +1,13 @@
 (function(env) {
 
+    Handlebars.registerHelper("encode", function(a, b) {
+        if(b.indexOf("!") === -1) { 
+            return "/?q=" + encodeURIComponent(a + " " + b);
+        } else {
+            return "/184/c/" + encodeURIComponent(b);
+        }
+    });
+    
     Handlebars.registerHelper("list", function(context, options) {
         var list = "";
         var limit = 0;
@@ -8,11 +16,14 @@
             context.Abstract.categories.forEach(function(v) {
                 var key = Object.keys(v)[0];
                 var obj = $.extend(v[key], {
-                    title: key,
                     signal: context.meta.signal_from,
-                    hide: limit < 12 ? false : true
+                    hide: limit < 12 ? false : true,
+                    abstract_title: context.Abstract.title,
+                    original_title: key
                 });
 
+                obj.title = key.replace(obj.abstract_title, "");
+                
                 limit++;
                 list += options.fn(obj);
             });
