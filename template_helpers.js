@@ -1,6 +1,8 @@
 (function(env) {
 
     Handlebars.registerHelper("encode", function(a, b) {
+        b = b.replace("::", " ");
+        
         if(b.indexOf("!") === -1) { 
             return "/?q=" + encodeURIComponent(a + " " + b);
         } else {
@@ -36,7 +38,7 @@
     });
 
     Handlebars.registerHelper("transform", function(context) {
-        return context.replace(" ", "_");
+        return context.replace("::", " ");
     });
     
     Handlebars.registerHelper("stripFathead", function(context) {
