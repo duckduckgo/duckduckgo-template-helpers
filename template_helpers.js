@@ -11,6 +11,7 @@
     Handlebars.registerHelper("list", function(context, options) {
         var list = "";
         var limit = 0;
+        context.Abstract.url = context.Abstract.url || "https://ruby-doc.org/core";
 
         if(context.Abstract.categories) {
             context.Abstract.categories.forEach(function(v) {
