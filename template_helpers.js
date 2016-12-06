@@ -20,7 +20,7 @@
                 var key = Object.keys(v)[0];
                 var obj = $.extend(v[key], {
                     signal: context.meta.signal_from,
-                    hide: limit < 12 ? false : true,
+                    hide: limit < 5 ? false : true,
                     abstract_title: context.Abstract.title,
                     original_title: key
                 });
