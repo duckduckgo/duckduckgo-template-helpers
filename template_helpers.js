@@ -22,6 +22,19 @@
         return options.fn(this);
     });
 
+
+    Handlebars.registerHelper('or', function() {
+        var args = Array.prototype.slice.call(arguments),
+            // The last argument is always the `options` object.
+            options = args.pop();
+
+        for(var i = 0; i < args.length; i++) {
+            if(args[i]) { return options.fn(this); }
+        }
+
+        return;
+    });
+
     /**
      * Simple wrapper around DDG.commifyNumber
      *
