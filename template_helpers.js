@@ -170,7 +170,7 @@
     // It converts things like: http://blogs.wsj.com/law/2013/11/14/google-wins-dismissal-of-book-scanning-suit/?mod=smallbusiness/
     // Into: blogs.wsj.com/law/2013/11/14/google-wins-dismissal-of-book-scanning-suit/?mod=smallbusiness/
     Handlebars.registerHelper("domainWithPath", function(url) {
-        var re = new RegExp('^.*?\/\/([^\?\:\#]+)');
+        var re = new RegExp('^.*?\/\/([^\?\:\;\#]+)');
         if (re.test(url)) {
             return RegExp.$1.replace('www.','').replace(/\/$/,'');
         }
