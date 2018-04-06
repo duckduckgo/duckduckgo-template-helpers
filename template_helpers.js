@@ -617,12 +617,16 @@
             meta.sourceIconUrl = '/assets/icon_favicon_placeholder.v104.png';
             meta.sourceIcon = false;
         }
-        if (!meta.hideMoreAtText && !ops.hideMoreAtText && !ops.dynamicMoreAtText && !(DDG.device.isMobile && ops.sourceOnlyMobile) && !(DDG.device.isMobile && meta.iconOnlyMobile)) {
+        if (!meta.hideMoreAtText && !ops.hideMoreAtText && !ops.dynamicMoreAtText && !(DDG.device.isMobile && ops.sourceOnlyMobile)) {
             meta.moreAtText = DDG.Text.MORE_AT_STRING;
         }
         // hides the 'More At' text when the source name is longer than the # of characters passed into the variable:
         if (ops.dynamicMoreAtText) {
             meta.moreAtText = (meta.moreAtText.length < ops.dynamicMoreAtText) ? DDG.Text.MORE_AT_STRING : meta.moreAtText;
+        }
+
+        if (DDG.device.isMobile && meta.iconOnlyMobile) {
+            meta.moreAtText = '';
         }
 
         return DDG.templates.more_at(meta);
