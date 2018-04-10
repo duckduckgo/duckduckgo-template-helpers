@@ -625,6 +625,10 @@
             meta.moreAtText = (meta.moreAtText.length < ops.dynamicMoreAtText) ? DDG.Text.MORE_AT_STRING : meta.moreAtText;
         }
 
+        if (DDG.device.isMobile && meta.iconOnlyMobile) {
+            meta.moreAtText = '';
+        }
+
         return DDG.templates.more_at(meta);
     });
 
