@@ -285,6 +285,11 @@
             url = DDG.get_favicon_url(sourceUrl),
             output = '<img width="'+w+'" height="'+h+'" class="'+className;
         
+        // prevent creating an image element with an undefined src tag
+        if (!url) {
+            return output + '" />';
+        }
+
         if (lazy) {
             output += ' js-lazyload" data-src="'+url+'" />';
         } else {
