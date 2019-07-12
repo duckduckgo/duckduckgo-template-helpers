@@ -287,8 +287,8 @@
         
         // prevent creating an image element with an undefined src tag
         if (!url) {
-            // provide an empty data url to avoid making a server call
-            return output + '" src="data:," />';
+            // provide a transparent 1x1 data url to avoid making a server call
+            return output + '" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" />';
         }
 
         if (lazy) {
