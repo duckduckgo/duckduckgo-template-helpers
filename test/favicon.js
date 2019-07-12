@@ -17,7 +17,7 @@ describe('Handlebars.helpers.favicon', function() {
     });
 
     it('should create a tag with no src', function() {
-        var expectedTag = '<img width="16" height="16" class="zci__more-at__icon" />';
+        var expectedTag = '<img width="16" height="16" class="zci__more-at__icon" src="data:," />';
         var undefinedUrl = void(0);
 
         expect(Handlebars.helpers.favicon(undefinedUrl)).toEqual(expectedTag);

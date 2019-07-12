@@ -287,7 +287,8 @@
         
         // prevent creating an image element with an undefined src tag
         if (!url) {
-            return output + '" />';
+            // provide an empty data url to avoid making a server call
+            return output + '" src="data:," />';
         }
 
         if (lazy) {
