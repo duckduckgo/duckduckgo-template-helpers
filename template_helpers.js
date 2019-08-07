@@ -32,13 +32,13 @@
         return DDG.commifyNumber(number);
     });
 
-    /** 
+    /**
      * @function concat
      *
      * **Block Helper**
-     * 
+     *
      * Concatenates all the elements in a collection (array of strings)
-     * 
+     *
      * An optional item separator can be appended to
      * each item and an optional conjunction can be
      * used for the last item.
@@ -46,7 +46,7 @@
      * Note: Technically, the elements can be of any type, but it is assumed that the block returns a string
      *
      * @param {string} sep  **[optional]** Item separator. Default: `''`
-     *                      
+     *
      * @param {string} conj **[optional]** Final separator, preceeds last item. Default: `''`
      *
      * @returns {string}
@@ -63,7 +63,7 @@
      * - `['a']`           returns:  `a`
      * - `['a', 'b']`      returns:  `a and b`
      * - `['a', 'b', 'c']` returns:  `a, b and c`
-     * 
+     *
      */
     Handlebars.registerHelper("concat", function(context, options) {
         if (!context) { return ""; }
@@ -93,21 +93,21 @@
 
     /**
      * @function condense
-     * 
+     *
      * Shortens a string
-     * 
+     *
      * An optional maximum string length can be provided if preferred.
      *
      * @param {number} maxlen **[optional]** Maximum allowed string length. Default: `10`
-     *                      
+     *
      * @param {number} fuzz The allowable deviation from the maxlen, used to allow a sentence/word to complete if it is less than fuzz characters longer than the maxlen
-     *                        
+     *
      * @param {string truncation **[optional]** The truncation string. Default: `'...'`
      *
      * Example:
-     * 
+     *
      * `{{condense myString maxlen="135" truncation="..."}}`
-     * 
+     *
      * This will output the value of `myString` up to a maximum of 135 characters
      * (not including the length of the truncation string) and then append
      * the truncation string to the output
@@ -182,7 +182,7 @@
      * @function durationFormat
      *
      * Takes a time duration in milliseconds
-     * and converts it to nice, formatted 
+     * and converts it to nice, formatted
      * string duration (i.e. 1:23:10)
      *
      * usage: "{{durationFormat ms}}"
@@ -197,18 +197,18 @@
      *
      * Shortens a string by removing words until string length is <= `limit` and
      * appends an ellipsis ('...') to the output
-     * 
+     *
      * Note: It automatically appends any closing tag if one is missing.
-     * 
+     *
      * @param {string} text  text to shorten
      * @param {number} limit maximum length of shortened string
-     * 
+     *
      * @return {string}
      *
      * Example:
      *
      * `{{ellipsis title 50}}`
-     * 
+     *
      */
     Handlebars.registerHelper("ellipsis", function(text, limit, options) {
         if (!text) { return ""; }
@@ -271,7 +271,7 @@
 
     /**
      * favicon
-     * 
+     *
      * Find favicon and generate the appropriate markup.
      *
      */
@@ -284,7 +284,7 @@
             h = ops.h || '16',
             url = DDG.get_favicon_url(sourceUrl),
             output = '<img width="'+w+'" height="'+h+'" class="'+className;
-        
+
         // prevent creating an image element with an undefined src tag
         if (!url) {
             // provide a transparent 1x1 data url to avoid making a server call
@@ -306,7 +306,7 @@
     });
 
     /**
-     * Takes an array of components (or a single component) and 
+     * Takes an array of components (or a single component) and
      * renders the HTML to use them as the subtitle.
      *
      * @param {array/object/string} components
@@ -330,7 +330,7 @@
      *
      * e.g. takes Chicago (Illinois) and converts it to:
      * <h1 class="title">Chicago <span class="title__sub">Illinois</span></h1>
-     * 
+     *
      * Will also remove the title from an abstract by taking the link text (parseFirst)
      *
      */
@@ -369,9 +369,9 @@
      * @returns {string}
      *
      * Example:
-     * 
+     *
      * `{{imageProxy imageURL}}`
-     * 
+     *
      * produces: `/iu/?u={{imageURL}}`
      *
      * This works for direct urls, seems not to work for those with a query string
@@ -389,17 +389,27 @@
     });
 
     /**
+     * @function imageProxyThumbnail
+     *
+     * Request thumbnail images in default size + 25%
+     */
+
+    Handlebars.registerHelper("imageProxyThumbnail", function(url) {
+        return DDG.getImageProxyURL(url, false, false, 204);
+    });
+
+    /**
      * @function include
      *
      * Loads the specified Handlebars template and applies it with
      * the current context
-     * 
+     *
      * Note: There is no recursive cycle detection! **Be careful**.
      *
      * Example:
-     * 
+     *
      * `{{include ../myTemplate}}`
-     * 
+     *
      * Applies the template `myTemplate` using `this` as the data context
      *
      * `{{include template wrap="wrapper"}}`
@@ -436,7 +446,7 @@
      * a new object containing the "key" and "value" for each
      *
      * Example:
-     * 
+     *
      * ```
      * {{#keys myObject}}
      *      {{key}} : {{value}}
@@ -453,7 +463,7 @@
         return out;
     });
 
-    // tokenize incoming text by wrapping in an l() function 
+    // tokenize incoming text by wrapping in an l() function
     Handlebars.registerHelper('l', function() {
         return l.apply(window,arguments);
     });
@@ -467,14 +477,14 @@
      * @function loop
      *
      * **Block Helper**
-     * 
+     *
      * Counts from zero to the value of `context` (assuming `context` is a **number**)
      * applying the content of the block each time.
-     * 
+     *
      * Note: A maximum of 100 loops is allowed.
      *
      * Example:
-     * 
+     *
      * ```
      * {{#loop star_rating}}
      *     <img src="{{star}}" class="star"></span>
@@ -538,14 +548,14 @@
             return url;
         }
     });
-    
+
     // helper that requires moment.js - bails if not available
     Handlebars.registerHelper("momentDate", function(obj, options) {
         if (!moment) { return ''; }
         var ops = options && options.hash || {},
             date = moment.utc(obj, "YYYY-MM-DD HH:mm:ss"),
             format = ops.format || 'ddd MMM D';
-        
+
         return date.local().format(format);
     });
 
@@ -553,7 +563,7 @@
     Handlebars.registerHelper("momentTime", function(obj) {
         if (!moment) { return ''; }
         var time = moment.utc(obj, "YYYY-MM-DD HH:mm:ss");
-        
+
         return time.local().format('LT');
     });
 
@@ -561,7 +571,7 @@
      *
      * moreAt
      *
-     * Create an attribution line 
+     * Create an attribution line
      *
      */
     Handlebars.registerHelper("moreAt", function(meta, name, options) {
@@ -600,7 +610,7 @@
         else if (!meta.sourceIconUrl && meta.sourceUrl && !meta.sourceLogo && meta.sourceIcon !== false) {
             meta.sourceIcon=true;
         }
-        
+
         // bail if we still don't have a valid URL
         if (!meta.sourceUrl) { return; }
 
@@ -643,7 +653,7 @@
      *
      * Delimits a number or string with multiple numbers,
      * using commas or given delimiter
-     * 
+     *
      * Note: This supports integers and decimal numbers.
      *
      * Credit: This function was borrowed from
@@ -698,9 +708,9 @@
      * @param {string} delimiter **[optional]** Format the number with the `numFormat` helper
      *
      * Example:
-     * 
+     *
      * `{plural star_rating singular="star" plural="stars"}}`
-     * 
+     *
      * Will produce:
      * - `{{star_rating}} star`  if the value of `star_rating` is `1`, or
      * - `{{star_rating}} stars` if `star_rating` > `1`
@@ -829,16 +839,16 @@
 
     /**
      * @function stripHTML
-     * 
+     *
      * Strips HTML tags/elements from text
-     * 
+     *
      * @returns {string}
-     * 
+     *
      * Example:
-     * 
+     *
      * `{{stripHTML stringWithHTML}}`
      */
-    
+
      Handlebars.registerHelper("stripHTML", function(text, options) {
          return options.fn(DDG.strip_html(text));
      });
@@ -846,7 +856,7 @@
     /*
         Helper for table_detail.handlebars template
 
-        iterates through a list (context) and use the value from context as 
+        iterates through a list (context) and use the value from context as
         a key to reference a value form the data object.
 
         use: {{#table-each list data}}
@@ -893,11 +903,11 @@
      * Removes leading and trailing spaces from text
      *
      * @return {string}
-     * 
+     *
      * Example:
-     * 
+     *
      * `{{trim stringWithSpaces}}`
-     * 
+     *
      */
     Handlebars.registerHelper("trim", function(obj) {
         if (obj) { return obj.trim(); }
@@ -915,7 +925,7 @@
     });
 
     /**
-     * For adding a loading animation to 
+     * For adding a loading animation to
      * the DOM.
      *
      * @param {string} color [white|black], optional
