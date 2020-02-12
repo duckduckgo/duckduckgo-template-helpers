@@ -384,8 +384,8 @@
      *
      */
 
-    Handlebars.registerHelper("imageProxy", function(url, ops) {
-        return DDG.getImageProxyURL(url, ops);
+    Handlebars.registerHelper("imageProxy", function(url, options) {
+        return DDG.getImageProxyURL(url, options);
     });
 
     /**
