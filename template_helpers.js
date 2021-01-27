@@ -940,4 +940,25 @@
         return '<div class="loader" style="background-image:url(\'' + src + '\');"></div>';
     });
 
+    /**
+     * For adding equality check 
+     *
+     */
+    Handlebars.registerHelper("ifEq", function(a, b, options) {
+        if(a === b) {
+            return options.fn(this);
+        } 
+        return options.inverse(this);
+    });
+
+    /**
+     * For adding inequality check 
+     *
+     */
+    Handlebars.registerHelper("ifNeq", function(a, b, options) {
+        if(a !== b) {
+            return options.fn(this);
+        } 
+        return options.inverse(this);
+    });
 })(this);
