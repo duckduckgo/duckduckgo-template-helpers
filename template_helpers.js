@@ -941,24 +941,55 @@
     });
 
     /**
-     * For adding equality check 
+     *  @function ifEquals
+     * 
+     * For adding equality check for an object key
+     * 
+     * @return {string}
      *
+     * Example: {{#ifEquals color "red"}}
+     *          {{/ifEquals}}
+     *          
+     *          {{#ifEquals color "green"}}
+     *          {{/ifEquals}}
      */
-    Handlebars.registerHelper("ifEq", function(a, b, options) {
-        if(a === b) {
+    Handlebars.registerHelper("ifEquals", function(a, b, options) {
+        if (arguments.length !== 3) {
+            throw new Exception('#ifEquals requires exactly 2 arguments');
+        }
+
+        if (a === b) {
             return options.fn(this);
-        } 
+        }
+         
         return options.inverse(this);
     });
 
     /**
-     * For adding inequality check 
+     *  @function ifNotEquals
+     * 
+     * For adding equality check for an object key
+     * 
+     * @return {string}
      *
+     * Example: {{#ifNotEquals color "red"}}
+     *          {{/ifNotEquals}}
      */
-    Handlebars.registerHelper("ifNeq", function(a, b, options) {
-        if(a !== b) {
-            return options.fn(this);
-        } 
-        return options.inverse(this);
+    Handlebars.registerHelper("ifNotEquals", function(a, b, options) {
+        if (arguments.length !== 3) {
+            throw new Exception('#ifNotEquals requires exactly 2 arguments');
+        }
+
+        // if (a !== b) {
+        //     return options.fn(this);
+        // } 
+
+        // return options.inverse(this);
+
+        return Handlebars.helpers['ifEquals'].call(this, a, b, {
+            fn: options.inverse,
+            inverse: options.fn,
+            hash: options.hash
+        })
     });
 })(this);
