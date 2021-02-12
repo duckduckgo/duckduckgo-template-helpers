@@ -943,7 +943,7 @@
     /**
      *  @function ifEquals
      * 
-     * For adding equality check for an object key
+     * Equality check for an object key
      * 
      * @return {string}
      *
@@ -955,7 +955,7 @@
      */
     Handlebars.registerHelper("ifEquals", function(a, b, options) {
         if (arguments.length !== 3) {
-            throw new Exception('#ifEquals requires exactly 2 arguments');
+            throw new Error('#ifEquals requires exactly 2 arguments');
         }
 
         if (a === b) {
@@ -968,7 +968,7 @@
     /**
      *  @function ifNotEquals
      * 
-     * For adding equality check for an object key
+     * Inequality check for an object key
      * 
      * @return {string}
      *
@@ -977,14 +977,8 @@
      */
     Handlebars.registerHelper("ifNotEquals", function(a, b, options) {
         if (arguments.length !== 3) {
-            throw new Exception('#ifNotEquals requires exactly 2 arguments');
+            throw new Error('#ifNotEquals requires exactly 2 arguments');
         }
-
-        // if (a !== b) {
-        //     return options.fn(this);
-        // } 
-
-        // return options.inverse(this);
 
         return Handlebars.helpers['ifEquals'].call(this, a, b, {
             fn: options.inverse,
