@@ -979,11 +979,12 @@
         if (arguments.length !== 3) {
             throw new Error('#ifNotEquals requires exactly 2 arguments');
         }
-
+        
+        // Inverse of equals
         return Handlebars.helpers['ifEquals'].call(this, a, b, {
             fn: options.inverse,
             inverse: options.fn,
             hash: options.hash
-        })
+        });
     });
 })(this);
