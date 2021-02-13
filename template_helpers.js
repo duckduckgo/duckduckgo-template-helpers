@@ -981,7 +981,7 @@
         }
         
         // Inverse of equals
-        return Handlebars.helpers['ifEquals'].call(this, a, b, {
+        return Handlebars.helpers.ifEquals.call(this, a, b, {
             fn: options.inverse,
             inverse: options.fn,
             hash: options.hash
