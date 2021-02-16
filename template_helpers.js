@@ -940,4 +940,51 @@
         return '<div class="loader" style="background-image:url(\'' + src + '\');"></div>';
     });
 
+    /**
+     *  @function ifEquals
+     * 
+     * Equality check for an object key
+     * 
+     * @return {string}
+     *
+     * Example: {{#ifEquals color "red"}}
+     *          {{/ifEquals}}
+     *          
+     *          {{#ifEquals color "green"}}
+     *          {{/ifEquals}}
+     */
+    Handlebars.registerHelper("ifEquals", function(a, b, options) {
+        if (arguments.length !== 3) {
+            throw new Error('#ifEquals requires exactly 2 arguments');
+        }
+
+        if (a === b) {
+            return options.fn(this);
+        }
+         
+        return options.inverse(this);
+    });
+
+    /**
+     *  @function ifNotEquals
+     * 
+     * Inequality check for an object key
+     * 
+     * @return {string}
+     *
+     * Example: {{#ifNotEquals color "red"}}
+     *          {{/ifNotEquals}}
+     */
+    Handlebars.registerHelper("ifNotEquals", function(a, b, options) {
+        if (arguments.length !== 3) {
+            throw new Error('#ifNotEquals requires exactly 2 arguments');
+        }
+        
+        // Inverse of equals
+        return Handlebars.helpers.ifEquals.call(this, a, b, {
+            fn: options.inverse,
+            inverse: options.fn,
+            hash: options.hash
+        });
+    });
 })(this);
